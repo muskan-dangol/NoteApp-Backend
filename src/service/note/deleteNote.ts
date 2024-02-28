@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { deleteNotesById } from "../models/deleteNotes"; // Correcting the path
+import { deleteNotesById } from "../../controllers/notes/deleteNotes"; // Correcting the path
 
 export const deleteNotes = async (req: Request, res: Response) => {
   try {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { updateNoteById } from "../models/updateNotes";
+import { updateNoteById } from "../../controllers/notes/updateNotes";
 
 export const updatedNote = async (req: Request, res: Response) => {
   try {

@@ -1,5 +1,5 @@
-import newNoteEntry from "../utils/noteutils";
-import { addNote } from "../models/addNotes";
+import newNoteEntry from "../../utils/noteutils";
+import { addNote } from "../../controllers/notes/addNotes";
 import { Request, Response } from "express";
 
  export const createNote = async(req:Request, res:Response) => {

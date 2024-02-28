@@ -1,4 +1,4 @@
-import NotesModel, { Notes } from "./note";
+import NotesModel, { Notes } from "../../models/note";
 
 export const updateNoteById = async (id: string, updatedNote: Partial<Notes>): Promise<Notes | null> => {
   try {

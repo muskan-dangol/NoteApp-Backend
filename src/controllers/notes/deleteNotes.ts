@@ -1,4 +1,4 @@
-import NotesModel, { Notes } from "./note";
+import NotesModel, { Notes } from "../../models/note";
 
 export const deleteNotesById = async (id: string): Promise<Notes | null> => {
   try {

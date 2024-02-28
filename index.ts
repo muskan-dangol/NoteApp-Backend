@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import noteRouter from "./routes";
+import routes from "./router";
 
 const app = express();
 app.use(cors());
@@ -32,4 +32,4 @@ app.get("/ping", (_req, res) => {
   res.send("pong");
 });
 
-app.use("/api", noteRouter);
+app.use("/api", routes);
