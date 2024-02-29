@@ -2,7 +2,10 @@ import NotesModel, { Notes } from "../../models/note";
 
 export const getNotes = async (): Promise<Notes[]> => {
   try {
-    const allNotes = await NotesModel.find();
+    const allNotes = await NotesModel.find().populate("user", {
+      username: 1,
+      name: 1,
+    });
     return allNotes;
   } catch (error) {
     throw new Error("Error fetching notes from MongoDB: " + error);

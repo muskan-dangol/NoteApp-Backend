@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import { getNotes } from "../../controllers/notes/getNotes"; // Correcting the path
-
-import { getNotesById } from "../../controllers/notes/getNotes";
+import { getNotes, getNotesById } from "../../controllers/notes/getNotes"; // Correcting the path
 
 export const getAllNotes = async (_req: Request, res: Response) => {
   try {

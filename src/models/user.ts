@@ -5,7 +5,7 @@ export interface Users {
   username: string;
   name: string;
   password: string;
-  notes?: mongoose.Types.ObjectId[];
+  notes: mongoose.Types.ObjectId[];
 }
 
 const userSchema = new Schema<Users>({

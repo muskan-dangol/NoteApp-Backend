@@ -3,13 +3,12 @@ import NotesModel, { Notes } from "../../models/note";
 export const deleteNotesById = async (id: string): Promise<Notes | null> => {
   try {
     const note = await NotesModel.findById(id);
-    if(!note){
+    if (!note) {
       return null;
     }
-    const deletedNote = await NotesModel.findByIdAndDelete(id);
-    return deletedNote;
+    await NotesModel.findByIdAndDelete(id);
+    return null;
   } catch (error) {
     throw new Error("Error deleting note by ID from MongoDB: " + error);
   }
 };
-

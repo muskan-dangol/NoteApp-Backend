@@ -4,6 +4,7 @@ import {
   parseUsername,
   parsename,
   parsepasswordHash,
+  parsenotes
 } from "../models/user";
 
 
@@ -14,12 +15,14 @@ const newUserEntry = (object: unknown): Users => {
   if (
     "username" in object &&
     "name" in object &&
-    "password" in object 
+    "password" in object &&
+    "notes" in object
   ) {
     const newUser: Users = {
       username: parseUsername(object.username),
       name: parsename(object.name),
       password: parsepasswordHash(object.password),
+      notes: parsenotes(object.notes)
     };
     return newUser;
   }

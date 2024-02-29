@@ -1,4 +1,4 @@
-import UserModel, { Users } from "../models/user";
+import UserModel, { Users } from "../../models/user";
 
 const addUser = async (user: Users): Promise<Users> => {
   try {
