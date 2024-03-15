@@ -10,7 +10,7 @@ export interface Notes {
 }
 
 const noteSchema = new Schema<Notes>({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true, minlength: 5  },
   content: { type: String, required: true, minlength: 5 },
   date: { type: String, default: moment().format("L") },
   user: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
@@ -46,7 +46,6 @@ export const parseUsers = (users: unknown): mongoose.Types.ObjectId[] => {
     return new mongoose.Types.ObjectId(user);
   });
 };
-
 
 const NotesModel = mongoose.model<Notes>("Notes", noteSchema);
 

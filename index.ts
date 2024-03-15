@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import routes from "./router";
+import middleware from "./src/utils/customError";
 
 const app = express();
 app.use(cors());
@@ -33,3 +34,5 @@ app.get("/ping", (_req, res) => {
 });
 
 app.use("/api", routes);
+app.use(middleware.errorHandler);
+app.use(middleware.unknownEndpoint);

@@ -1,9 +1,13 @@
+import { NextFunction } from "express";
 import NotesModel, { Notes } from "../../models/note";
 import UserModel from "../../models/user";
 
-export const addNote = async (entry: Notes, userId: unknown): Promise<Notes> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addNote = async (entry: Notes, decodedToken: any,
+  next: NextFunction
+): Promise<Notes> => {
   try {
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.findById(decodedToken.id);
     if (!user) {
       throw new Error("User not found");
     }
@@ -18,7 +22,9 @@ export const addNote = async (entry: Notes, userId: unknown): Promise<Notes> => 
     await user.save();
 
     return savedNotes;
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error:any) {
+    next(error);
     throw new Error("Error saving note to MongoDB: " + error);
   }
 };

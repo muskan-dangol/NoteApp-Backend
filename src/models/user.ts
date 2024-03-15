@@ -5,13 +5,13 @@ export interface Users {
   username: string;
   name: string;
   password: string;
-  notes: mongoose.Types.ObjectId[];
+  notes?: mongoose.Types.ObjectId[];
 }
 
 const userSchema = new Schema<Users>({
-  username: { type: String, required: true, unique: true },
-  name: { type: String, required: true },
-  password: { type: String, required: true },
+  username: { type: String, required: true, unique: true, minlength: 3 },
+  name: { type: String, unique: true, required: true },
+  password: { type: String, required: true, minlength: 3 },
   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Notes" }],
 });
 
@@ -47,19 +47,6 @@ export const parsepasswordHash = (passwordHash: unknown): string => {
     throw new Error("Incorrect or missing passwordHash");
   }
   return passwordHash;
-};
-
-export const parsenotes = (notes: unknown): mongoose.Types.ObjectId[] => {
-  if (!notes || !Array.isArray(notes)) {
-    throw new Error("Incorrect or missing notes");
-  }
-
-  return notes.map((note) => {
-    if (!note || typeof note !== "string") {
-      throw new Error("Incorrect or missing note in notes");
-    }
-    return new mongoose.Types.ObjectId(note);
-  });
 };
 
 const UserModel = mongoose.model<Users>("User", userSchema);
