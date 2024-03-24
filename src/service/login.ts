@@ -2,7 +2,6 @@ import { sign } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import { loginController } from "../controllers/login";
 import bcrypt from "bcrypt";
-// import error from "../utils/logger";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -34,7 +33,7 @@ export const login = async (
     const token = sign(userForToken, secretKey, { expiresIn: 60 * 60 });
     return res
       .status(200)
-      .send({ token, username: user.username, name: user.name });
+      .send({ token, username: user.username, name: user.name, id: user._id });
   } catch (error) {
     next(error);
     console.error("Error fetching user: ", error);
