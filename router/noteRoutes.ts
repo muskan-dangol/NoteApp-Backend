@@ -7,10 +7,9 @@ import {authenticateToken} from "../src/middleware/userAuthentication";
 const router = express.Router();
 
 router.post("/", authenticateToken, createNote);
-
-router.get("/", getAllNotes);
+router.get("/", authenticateToken, getAllNotes);
 router.get("/:id", getNote);
 router.delete("/:id", deleteNotes);
-router.put("/:id", updatedNote);
+router.put("/:id",  updatedNote);
 
 export default router;

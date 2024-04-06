@@ -10,8 +10,7 @@ export const getAllUsers = async (
     const getUser = await getUsers();
     res.json(getUser);
   } catch (error) {
-    next(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    return next(error);
   }
 };
 
@@ -25,7 +24,6 @@ export const getUser = async (
     const user = await getUsersById(id);
     res.json(user);
   } catch (error) {
-    next(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    return next(error);
   }
 };

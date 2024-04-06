@@ -11,7 +11,7 @@ export interface Notes {
 
 const noteSchema = new Schema<Notes>({
   title: { type: String, required: true, minlength: 5  },
-  content: { type: String, required: true, minlength: 5 },
+  content: { type: String, minlength: 5 },
   date: { type: String, default: moment().format("L") },
   user: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
@@ -34,12 +34,12 @@ export const parseTitle = (title: unknown): string => {
   return title;
 };
 
-export const parseUsers = (users: unknown): mongoose.Types.ObjectId[] => {
-  if (!users || !Array.isArray(users)) {
+export const parseUsers = (user: unknown): mongoose.Types.ObjectId[] => {
+  if (!user || !Array.isArray(user)) {
     throw new Error("Incorrect or missing users");
   }
 
-  return users.map((user) => {
+  return user.map((user) => {
     if (!user || !isString(user)) {
       throw new Error("Incorrect or missing user in users");
     }

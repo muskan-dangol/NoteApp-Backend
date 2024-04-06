@@ -7,7 +7,6 @@ export const deleteNotes = async (req: Request, res: Response) => {
     const deletedNote = await deleteNotesById(id);
     res.json(deletedNote);
   } catch (error) {
-    console.error("Error deleting notes:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

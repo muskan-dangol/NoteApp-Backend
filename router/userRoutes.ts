@@ -5,7 +5,7 @@ import { deleteUser } from "../src/service/user/deleteUser";
 
 const router = express.Router();
 
-router.post("/", createNewUser);
+router.post("/", createNewUser); //route for signup
 
 router.get("/", getAllUsers);
 router.get("/:id", getUser);

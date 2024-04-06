@@ -35,8 +35,6 @@ export const login = async (
       .status(200)
       .send({ token, username: user.username, name: user.name, id: user._id });
   } catch (error) {
-    next(error);
-    console.error("Error fetching user: ", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    return next(error);    
   }
 };

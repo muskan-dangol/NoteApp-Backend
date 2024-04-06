@@ -14,18 +14,16 @@ export const authenticateToken = (
   next: NextFunction
 ) => {
   const authHeader = req.headers["authorization"];
-  if (authHeader && authHeader.startsWith("Bearer")) {
+  if (authHeader && authHeader.startsWith("")) {
     const token = authHeader.replace("Bearer ", "");
     const secretKey = process.env.SECRET || "defaultSecret";
 
     try {
       const decodedToken = jwt.verify(token, secretKey) as JwtPayload;
-
       if (Date.now() >= (decodedToken.exp ?? 0) * 1000) {
         return res.status(403).json({ message: "Token has expired" });
       }
-
-      req.userId = decodedToken.userId as string;
+      req.userId = decodedToken.id as string;
       next();
     } catch (err) {
       return res.status(403).json({ message: "Invalid token" });

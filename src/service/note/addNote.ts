@@ -1,7 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import NotesModel, { Notes, parseContent, parseTitle, parseUsers } from "../../models/note";
+import NotesModel, {
+  Notes,
+  parseContent,
+  parseTitle,
+  parseUsers,
+} from "../../models/note";
 
 import UserModel from "../../models/user";
 
@@ -29,7 +34,7 @@ export const createNote = async (
         const newNote: Notes = {
           title: parseTitle(object.title),
           content: parseContent(object.content),
-          user: parseUsers(object.user)
+          user: parseUsers(object.user),
         };
         return newNote;
       }
@@ -68,7 +73,6 @@ export const createNote = async (
 
     return res.status(201).json(savedNote);
   } catch (error) {
-    next(error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    return next(error);
   }
 };

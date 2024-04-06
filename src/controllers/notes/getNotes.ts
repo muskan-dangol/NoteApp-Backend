@@ -1,8 +1,8 @@
 import NotesModel, { Notes } from "../../models/note";
 
-export const getNotes = async (): Promise<Notes[]> => {
+export const getNotes = async (userId: string): Promise<Notes[]> => {
   try {
-    const allNotes = await NotesModel.find().populate("user", {
+    const allNotes = await NotesModel.find({ user: userId }).populate("user", {
       username: 1,
       name: 1,
     });

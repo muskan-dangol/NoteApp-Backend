@@ -11,7 +11,6 @@ export const deleteUser = async (
     const deletedUser = await deleteUsersById(id);
     res.json(deletedUser);
   } catch (error) {
-    next(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    return next(error);
   }
 };
